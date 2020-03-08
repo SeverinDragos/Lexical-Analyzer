@@ -1,97 +1,87 @@
-# fmi-unibuc-ia.github.io/ia
+import csv
+import sys
+from sklearn.svm import SVC
 import numpy as np
-cale = 'D:/An II/IA/ML/data/'
-train_images = np.loadtxt(cale + 'train_images.txt')
-train_labels = np.loadtxt(cale + 'train_labels.txt', 'int')
-test_images = np.loadtxt(cale + 'test_images.txt')
-test_labels = np.loadtxt(cale + 'test_labels.txt', 'int')
+import os
 
+#citirea
+classes = np.loadtxt("B:/IAproiect/train_labels.csv",dtype="str",delimiter=",",skiprows=1)
+min = sys.maxsize
 
-class NaiveBayes:
-    def __init__(self, num_bins):
-        self.bins = np.linspace(start=0, stop=255, num=num_bins)
-        self.num_bins = num_bins
+train_label = []
+for i in range(int(len(classes))):
+    train_label.append(classes[i])
 
-    def values_to_bins(self, matrice_imagini):
-        return np.digitize(matrice_imagini, self.bins) - 1
+train_data=[]
+for i in range(len(train_label)):
+    a = np.loadtxt("B:/IAproiect/train/"+train_label[i][0]+".csv",dtype="str",delimiter=",")
+    train_data.append(a.flatten())
+    if min > len(a):
+        min=len(a)
 
-    def fit(self, train_images, train_labels):
-        # aplicam histograma
+files = os.listdir("test")
+test_label=[]
+for i in range(len(files)):
+    test_label.append(files[i][:5])
 
-        train_images = self.values_to_bins(train_images)
+test_data = []
+for i in range(len(files)):
+    a = np.loadtxt("B:/IAproiect/test/"+files[i],dtype="str",delimiter=",")
+    test_data.append(a.flatten())
+    if(min > len(a)):
+        min = len(a)
 
-        # calculam P(c) si P(x|c)
-        # dimensiunea lui P(c) = 1 x num_classes
-        # dimensiunea lui P(x|c) = num_features X num_bins X num_classes
-        pc = np.zeros((np.unique(train_labels).shape[0]))
-        print('toate clasele pe care le avem:\n', np.unique(train_labels))
-        for class_val in np.unique(train_labels):
-            pc[class_val] = \
-                sum(train_labels == class_val) / train_labels.shape[0]
-        # P(x/c)
-        pxc = np.zeros((train_images.shape[1], self.num_bins, \
-                        np.unique(train_labels).shape[0]))
-        for i in range(train_images.shape[1]):
-            for class_val in np.unique(train_labels):
-                imgs_in_class_val = train_images[train_labels == class_val, :]
-                # for k in range(16):
-                #     plt.subplot(4,4,k+1)
-                #     image = imgs_in_class_val[k, :] # prima imagine
-                #     image = np.reshape(image, (28, 28))
-                #     io.imshow(image.astype(np.uint8))
-                # io.show()
+#egalizarea datelor
+for i in range(len(train_data)):
+    while len(train_data[i]) > min:
+        train_data[i] = train_data[i][:-1]
+for i in range(len(test_data)):
+    while len(test_data[i]) > min:
+        test_data[i] = test_data[i][:-1]
 
-                for j in range(self.num_bins):
-                    numar_bins_pe_feature = sum(imgs_in_class_val[:,i] == j)
-                    pxc[i, j, class_val] = \
-                        numar_bins_pe_feature / imgs_in_class_val.shape[0]
-        self.pc = pc
-        self.pxc = pxc + 1e-10
-        return pc, pxc
+train_data=np.asarray(train_data)
+test_data=np.asarray(test_data)
+print(train_data.shape)
 
-    def predict(self, test_images):
-        # dimensiunea lui P(x|c) = num_features X num_bins X num_classes
-        # dimensiunea lui predictions_classes = num_features X num_classes
+#functia de acuratete
+def evaluate(pred_labels, real_labels):
+    aux = 0
+    for i in range(len(pred_labels)):
+        if float(pred_labels[i]) == float(real_labels[i]):
+            aux += 1
+    return aux / len(pred_labels)
 
-        test_images = self.values_to_bins(test_images)
-        predictions_classes = np.zeros((test_images.shape[0],
-                                        len(np.unique(train_labels))))
-        for img_idx in range(test_images.shape[0]):
-            for class_val in np.unique(train_labels):
-                prbabnb = np.log(self.pc[class_val])
-                # for j in range(self.num_bins):
-                for i in range(test_images.shape[1]):
-                    prbabnb += np.log(self.pxc[i,test_images[img_idx, i],
-                                               class_val])
-                predictions_classes[img_idx, class_val] = prbabnb
+#train_label si teat_label contineau si id-ul si clasa si am fost nevoita sa le modific
+train_label_class=np.empty(len(train_label))
+for i in range(len(train_label)):
+    train_label_class[i]=train_label[i][1]
+# test_label_class=np.empty(len(test_label))
+# for i in range(len(test_label)):
+#     test_label_class[i]=test_label[i][1]
 
-        predicted_labels = np.zeros((test_images.shape[0]))
-        for img_idx in range(predictions_classes.shape[0]):
-            predicted_labels[img_idx] = \
-                np.argmax(predictions_classes[img_idx,:])
-        return predicted_labels
+#clasificatorul
+clasificator = SVC(C=20, kernel='rbf', degree=3, gamma='auto_deprecated',
+                   coef0=0.0, shrinking=True, probability=False,
+                   tol=1e-3, cache_size=200, class_weight=None,
+                   verbose=False, max_iter=-1, decision_function_shape='ovr',
+                   random_state=None)
 
-    def evaluate(self, pred_labels, real_labels):
-        aux = 0
-        for i in range(len(pred_labels)):
-            if pred_labels[i] == real_labels[i]:
-                aux += 1
-        return aux / len(pred_labels)
-        # alta metoda:
-        # pred_labels = np.array(pred_labels)
-        # real_labels = np.array(real_labels)
-        # return sum(real_labels == pred_labels) / pred_labels.shape[0]
+#antrenarea
+clasificator.fit(train_data, train_label_class)
+etichete_pred_antrenare = clasificator.predict(train_data)
+etichete_pred_testare = clasificator.predict(test_data)
+accuracies_train= evaluate(etichete_pred_antrenare, train_label_class)
+# accuracies_test= evaluate(etichete_pred_testare, test_label_class)
 
+print(accuracies_train)
+# print(accuracies_test)
+#print(etichete_pred_testare)
 
-print(np.zeros(np.unique(train_labels).shape[0]))
-ob = NaiveBayes(10)
-pc, pxc = ob.fit(train_images, train_labels)
-predicted_labels = ob.predict(test_images)
-print(ob.evaluate(predicted_labels, test_labels))
-# print(pc)
-# print(sum(pc))
-# for i in range(pxc.shape[0]):
-#     print(pxc[i,:,:])
-
-
-
+#afisarea in fisier a predictiilor
+summit_file=open("result_file.csv",mode="w")
+write = csv.writer(summit_file, quoting=csv.QUOTE_MINIMAL)
+write.writerow(['id','class'])
+i=0
+for x in np.nditer(etichete_pred_testare):
+    write.writerow([test_label[i],int(x)])
+    i=i+1

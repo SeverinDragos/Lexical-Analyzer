@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3614d554-b6da-4584-9022-fb42e6b43393" name="Default Changelist" comment="" />
+    <list default="true" id="3614d554-b6da-4584-9022-fb42e6b43393" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/LexicalAnalyzer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/LexicalAnalyzer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/META-INF/Tema1TC.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$16.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$17.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$18.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$18.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$19.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$19.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$20.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/States.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/States.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Tema1TC/Token.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Tema1TC/Token.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LexicalAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LexicalAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/States.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/States.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.in" beforeDir="false" afterPath="$PROJECT_DIR$/test.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.out" beforeDir="false" afterPath="$PROJECT_DIR$/test.out" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +55,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1YqOq6fzRtwWyRP1ARVMcV8pR9d" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -59,9 +99,53 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1583666851250">
+    <state x="765" y="221" key="#com.intellij.ide.util.MemberChooser" timestamp="1583677546025">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583666851250" />
+    <state x="765" y="221" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1583677546025" />
+    <state x="714" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1583678211924">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="714" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583678211924" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1583700229003">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583700229003" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1583700229003">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583700229003" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1583700229003">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583700229003" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1583700229003">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583700229003" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1583700145416">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583700145416" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1583700145416">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583700145416" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1583700145416">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583700145416" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1583700145416">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583700145416" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1583700123867">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1583700123867" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1583698642537">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583698642537" />
   </component>
 </project>

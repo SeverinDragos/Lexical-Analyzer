@@ -4,17 +4,15 @@ public enum States implements State {
     Initial {
         @Override
         public State next(char c) {
-            if (c == '-')   return NegativeSign;
             /**?*/
             if (c == '0')   return Zero;
             if (c == '_' || Character.isLetter(c))  return Identifier;
             if (c == ' ')   return Space;
             if (c == '\n')  return Newline;
             if (Character.isDigit(c))   return Number;
-            /** add('-') */
             TreeSet<Character> operators = new TreeSet<>() {
                 {
-                    add('+');add('*');add('/');add('<');add('>');add('%');
+                    add('+');add('*');add('/');add('<');add('>');add('%');add('-');
                 }
             };
             if (operators.contains(c))  return CharacterCanBeFollowedByEqual;
@@ -27,7 +25,6 @@ public enum States implements State {
             };
             if (characters.contains(c)) return AnyCharacter;
             if (c == '#')   return Comment;
-            /** c == '\"' */
             if (c == '\'')  return StringSimpleQuotes;
             if (c == '\"')  return StringDoubleQuotes;
             return FinalStates.Fail;
@@ -97,7 +94,7 @@ public enum States implements State {
         @Override
         public State next(char c) {
             switch (c) {
-                case '\\': return Escaping;
+                case '\\': return EscapedCharacterSimpleQuotes;
                 case '\'': return StringSimpleQuotesEnd;
                 case '\n': return FinalStates.Fail;
                 default: return StringSimpleQuotes;
@@ -116,7 +113,7 @@ public enum States implements State {
         @Override
         public State next(char c) {
             switch (c) {
-                case '\\': return Escaping;
+                case '\\': return EscapedCharacterDoubleQuotes;
                 case '\"': return StringDoubleQuotesEnd;
                 case '\n': return FinalStates.Fail;
                 default: return StringDoubleQuotes;
@@ -131,41 +128,27 @@ public enum States implements State {
         }
     },
 
-    NegativeSign {
+    EscapedCharacterSimpleQuotes {
         @Override
         public State next(char c) {
-            if (Character.isDigit(c))   return Number;
-            return AnyCharacter;
-        }
-    },
-
-    Escaping {
-        @Override
-        public State next(char c) {
-            switch (c) {
-                /**?????Probably need Escaping for simple and double quotes*/
-                case '\\': return StringSimpleQuotes;
-                case '\'': return StringSimpleQuotes;
-                default: return CharacterEscaped;
-            }
-        }
-    },
-
-    CharacterEscaped {
-        @Override
-        public State next(char c) {
-            /**?????Probably need CharacterEscaped for simple and double quotes*/
             return StringSimpleQuotes;
+        }
+    },
+
+    EscapedCharacterDoubleQuotes {
+        @Override
+        public State next(char c) {
+            return StringDoubleQuotes;
         }
     },
 
     CharacterCanBeFollowedByEqual {
         @Override
         public State next(char c) {
-            switch (c) {
-                case '=': return GroupCharacter;
-                default: return FinalStates.End;
+            if (c == '=') {
+                return GroupCharacter;
             }
+            return FinalStates.End;
         }
     },
 
@@ -179,7 +162,6 @@ public enum States implements State {
     Exponent {
         @Override
         public State next(char c) {
-            if (c == '-')   return NegativeSign;
             if (Character.isDigit(c))   return Number;
             return FinalStates.End;
         }
