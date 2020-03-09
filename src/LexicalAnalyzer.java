@@ -73,6 +73,9 @@ public class LexicalAnalyzer {
     }
 
     public String tokenToString(Token token) {
+        if (token.getTypeIndex() == 6) {
+            return "";
+        }
         if (token.getTypeIndex() == 0) {
             return "(" + 0 + "," + token.getValueIndex() + ")\n";
         }

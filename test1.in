@@ -1,0 +1,96 @@
+import csv
+import sys
+from sklearn import preprocessing
+from sklearn.svm import SVC
+import numpy as np
+import os
+
+#citire
+classes = np.loadtxt("B:/IAproiect/train_labels.csv",dtype="str",delimiter=",",skiprows=1)
+min = sys.maxsize
+
+train_label = []
+for i in range(int(len(classes))):
+    train_label.append(classes[i])
+
+train_data=[]
+for i in range(len(train_label)):
+    a = np.loadtxt("B:/IAproiect/train/"+train_label[i][0]+".csv",dtype="str",delimiter=",")
+    train_data.append(a.flatten())
+    if min > len(a):
+        min=len(a)
+
+files = os.listdir("test")
+test_label=[]
+for i in range(len(files)):
+    test_label.append(files[i][:5])
+
+test_data = []
+for i in range(len(files)):
+    a = np.loadtxt("B:/IAproiect/test/"+files[i],dtype="str",delimiter=",")
+    test_data.append(a.flatten())
+    if(min > len(a)):
+        min = len(a)
+
+#egalizarea datelor
+for i in range(len(train_data)):
+    while len(train_data[i]) > min:
+        train_data[i] = train_data[i][:-1]
+for i in range(len(test_data)):
+    while len(test_data[i]) > min:
+        test_data[i] = test_data[i][:-1]
+
+train_data=np.asarray(train_data)
+test_data=np.asarray(test_data)
+
+#functia de acuratete
+def evaluate(pred_labels, real_labels):
+    aux = 0
+    for i in range(len(pred_labels)):
+        if float(pred_labels[i]) == float(real_labels[i]):
+            aux += 1
+    return aux / len(pred_labels)
+
+#train_label si teat_label contineau si id-ul si clasa si am fost nevoita sa le modific
+train_label_class=np.empty(len(train_label))
+for i in range(len(train_label)):
+    train_label_class[i]=train_label[i][1]
+# test_label_class=np.empty(len(test_label))
+# for i in range(len(test_label)):
+#     test_label_class[i]=test_label[i][1]
+
+#functia de normalizare
+def normalize( train_data, test_data):
+    scaler = preprocessing.StandardScaler()
+    scaler.fit(train_data)
+    train_data = scaler.transform(train_data)
+    test_data = scaler.transform(test_data)
+    return train_data, test_data
+
+#clasificatorul
+clasificator = SVC(C=20, kernel='rbf', degree=3, gamma='auto_deprecated',
+                   coef0=0.0, shrinking=True, probability=False,
+                   tol=1e-3, cache_size=200, class_weight=None,
+                   verbose=False, max_iter=-1, decision_function_shape='ovr',
+                   random_state=None)
+
+#normalizarea si antrenarea datelor
+train_data, test_data = normalize( train_data, test_data)
+clasificator.fit(train_data, train_label_class)
+etichete_pred_antrenare = clasificator.predict(train_data)
+etichete_pred_testare = clasificator.predict(test_data)
+accuracies_train= evaluate(etichete_pred_antrenare, train_label_class)
+# accuracies_test= evaluate(etichete_pred_testare, test_label_class)
+
+print(accuracies_train)
+# print(accuracies_test)
+#print(etichete_pred_testare)
+
+#afisarea in fisier a predictiilor
+summit_file=open("result_file.csv",mode="w")
+write = csv.writer(summit_file, quoting=csv.QUOTE_MINIMAL)
+write.writerow(['id','class'])
+i=0
+for x in np.nditer(etichete_pred_testare):
+    write.writerow([test_label[i],int(x)])
+    i=i+1

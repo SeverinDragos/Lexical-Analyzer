@@ -16,7 +16,7 @@ public class Main {
 
         LexicalAnalyzer lexicalAnalyzer;
         try {
-            lexicalAnalyzer = new LexicalAnalyzer("D:\\An III\\Tema1TC\\test.in");
+            lexicalAnalyzer = new LexicalAnalyzer("D:\\An III\\Tema1TC\\test1.in");
         }
         catch (IOException e) {
             System.out.println("Eroare la deschiderea fisierului de intrare!\n" + e);

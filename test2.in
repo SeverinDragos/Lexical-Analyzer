@@ -1,0 +1,90 @@
+import sys
+import numpy as np
+import os
+from sklearn.utils import shuffle
+
+#citire
+classes = np.loadtxt("B:/IAproiect/train_labels.csv",dtype="str",delimiter=",",skiprows=1)
+min = sys.maxsize
+
+train_label = []
+for i in range(int(len(classes))):
+    train_label.append(classes[i])
+
+train_data=[]
+for i in range(len(train_label)):
+    a = np.loadtxt("B:/IAproiect/train/"+train_label[i][0]+".csv",dtype="float",delimiter=",")
+    train_data.append(a)
+    if min > len(a):
+        min=len(a)
+
+files = os.listdir("test")
+test_label=[]
+for i in range(len(files)):
+    test_label.append(files[i][:5])
+
+test_data = []
+for i in range(len(files)):
+    a = np.loadtxt("B:/IAproiect/test/"+files[i],dtype="float",delimiter=",")
+    test_data.append(a)
+    if(min > len(a)):
+        min = len(a)
+
+#egalarea datelor
+for i in range(len(train_data)):
+    while len(train_data[i]) > min:
+        train_data[i] = train_data[i][:-1]
+for i in range(len(test_data)):
+    while len(test_data[i]) > min:
+        test_data[i] = test_data[i][:-1]
+
+train_data=np.asarray(train_data)
+test_data=np.asarray(test_data)
+
+#in train label aveam salvate si id-ul si clasa utilizatorului, si am fost nevoita da le modific
+train_label_class=np.empty(len(train_label))
+for i in range(len(train_label)):
+    train_label_class[i]=train_label[i][1]
+
+#functia de acuratete
+def compute_accuracy(x, y, w, b):
+    accuracy = (np.sign(np.dot(x, w) + b) == y).mean()
+    return accuracy
+
+#algoritmul de coborare pe gradient
+def widrow_hoff(x, y, num_epochs, learning_rate):
+    num_samples = x.shape[0]
+    num_features1= x.shape[1]
+    num_features2=x.shape[2]
+
+    w = np.ones(num_features2)
+    b = 1
+    for epoch_idx in range(num_epochs):
+        x, y = shuffle(x, y)
+        for sample_idx in range(num_samples):
+            for i in range(num_features1):
+                y_prezis = np.sum(np.array([x[sample_idx][i][0]*w[0],x[sample_idx][i][1]*w[1],x[sample_idx][i][2]*w[2]]))+ b
+                w = w - learning_rate * (y_prezis - y[sample_idx])* x[sample_idx][i]
+                b = b - learning_rate * (y_prezis - y[sample_idx])
+                loss = (y_prezis - y[sample_idx]) ** 2
+            print(f"epoch: {epoch_idx}, sample: {sample_idx}: sample_loss = {loss}")
+            compute_accuracy(x, y, w, b)
+    return w, b
+
+#actualizare epoci
+num_epochs = 70
+learning_rate = 0.1
+
+#antrenare
+w, b = widrow_hoff(train_data, train_label_class, num_epochs, learning_rate)
+accuracy = compute_accuracy(train_data, train_label_class, w, b)
+print(f"Final accuracy is: {accuracy * 100}%")
+print(f"w = {w}, b = {b}")
+
+# summit_file=open("result_file.csv",mode="w")
+# write = csv.writer(summit_file, quoting=csv.QUOTE_MINIMAL)
+# write.writerow(['id','class'])
+# i=0
+# for x in np.nditer(etichete_pred_testare):
+#     write.writerow([test_label[i],int(x)])
+#     i=i+1
